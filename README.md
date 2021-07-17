@@ -56,7 +56,10 @@ Tentei unificar os vídeos com diferentes taxa de atualização 'fps', porem, me
 <br><br>
 Comando ffmpeg da função Unir_vídeos:<br>
 ffmpeg -safe 0 -f concat -i videos/nome_dos_arquivos.txt -vf scale=iw*min(1280/iw\,720/ih):ih*min(1280/iw\,720/ih),pad=1280:720:(1280-iw*min(1280/iw\,720/ih))/2:(720-ih*min(1280/iw\,720/ih))/2 output.mp4";
-<br><br><br>
+<br><br>
+A logo foi criada no photoshop, e a intro/fim no sony vegas.<br>
+Nesta pasta tem algumas [imagens](https://github.com/DanielSvoboda/Coub_Mass_Download/tree/main/Download/logo)
+<br><br>
 
 
 
