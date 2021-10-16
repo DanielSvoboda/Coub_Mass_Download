@@ -47,21 +47,23 @@
             this.label_paginas = new System.Windows.Forms.Label();
             this.groupBox_periodos = new System.Windows.Forms.GroupBox();
             this.groupBox_ondeProcurar = new System.Windows.Forms.GroupBox();
-            this.label_order_by = new System.Windows.Forms.Label();
-            this.comboBox_order_by = new System.Windows.Forms.ComboBox();
             this.radioButton_comunidade = new System.Windows.Forms.RadioButton();
             this.radioButton_pesquisar = new System.Windows.Forms.RadioButton();
             this.textBox_pesquisar = new System.Windows.Forms.TextBox();
             this.radioButton_subscriptions = new System.Windows.Forms.RadioButton();
             this.button_ver_num_comunidades = new System.Windows.Forms.Button();
+            this.label_order_by = new System.Windows.Forms.Label();
+            this.comboBox_order_by = new System.Windows.Forms.ComboBox();
             this.groupBox_funcoes = new System.Windows.Forms.GroupBox();
             this.button_copiar_intro_fim = new System.Windows.Forms.Button();
             this.button_console = new System.Windows.Forms.Button();
             this.linkLabel_sobre = new System.Windows.Forms.LinkLabel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.groupBox_outros = new System.Windows.Forms.GroupBox();
             this.groupBox_periodos.SuspendLayout();
             this.groupBox_ondeProcurar.SuspendLayout();
             this.groupBox_funcoes.SuspendLayout();
+            this.groupBox_outros.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox_resultado_nome_arquivos
@@ -81,7 +83,7 @@
             this.Botao_TUDO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Botao_TUDO.Location = new System.Drawing.Point(6, 17);
             this.Botao_TUDO.Name = "Botao_TUDO";
-            this.Botao_TUDO.Size = new System.Drawing.Size(112, 23);
+            this.Botao_TUDO.Size = new System.Drawing.Size(95, 42);
             this.Botao_TUDO.TabIndex = 41;
             this.Botao_TUDO.Text = "INICIAR (TUDO)";
             this.Botao_TUDO.UseVisualStyleBackColor = true;
@@ -204,7 +206,7 @@
             // 
             // textBox_paginas
             // 
-            this.textBox_paginas.Location = new System.Drawing.Point(240, 60);
+            this.textBox_paginas.Location = new System.Drawing.Point(96, 53);
             this.textBox_paginas.Name = "textBox_paginas";
             this.textBox_paginas.Size = new System.Drawing.Size(20, 20);
             this.textBox_paginas.TabIndex = 61;
@@ -215,7 +217,7 @@
             // label_paginas
             // 
             this.label_paginas.AutoSize = true;
-            this.label_paginas.Location = new System.Drawing.Point(186, 62);
+            this.label_paginas.Location = new System.Drawing.Point(6, 56);
             this.label_paginas.Name = "label_paginas";
             this.label_paginas.Size = new System.Drawing.Size(48, 13);
             this.label_paginas.TabIndex = 62;
@@ -237,44 +239,18 @@
             // 
             // groupBox_ondeProcurar
             // 
-            this.groupBox_ondeProcurar.Controls.Add(this.label_order_by);
-            this.groupBox_ondeProcurar.Controls.Add(this.comboBox_order_by);
             this.groupBox_ondeProcurar.Controls.Add(this.radioButton_comunidade);
             this.groupBox_ondeProcurar.Controls.Add(this.radioButton_pesquisar);
             this.groupBox_ondeProcurar.Controls.Add(this.textBox_pesquisar);
             this.groupBox_ondeProcurar.Controls.Add(this.radioButton_subscriptions);
             this.groupBox_ondeProcurar.Controls.Add(this.button_ver_num_comunidades);
             this.groupBox_ondeProcurar.Controls.Add(this.textBox_comunidade);
-            this.groupBox_ondeProcurar.Location = new System.Drawing.Point(144, 86);
+            this.groupBox_ondeProcurar.Location = new System.Drawing.Point(129, 60);
             this.groupBox_ondeProcurar.Name = "groupBox_ondeProcurar";
-            this.groupBox_ondeProcurar.Size = new System.Drawing.Size(150, 181);
+            this.groupBox_ondeProcurar.Size = new System.Drawing.Size(196, 120);
             this.groupBox_ondeProcurar.TabIndex = 64;
             this.groupBox_ondeProcurar.TabStop = false;
             this.groupBox_ondeProcurar.Text = "Onde procurar?";
-            // 
-            // label_order_by
-            // 
-            this.label_order_by.AutoSize = true;
-            this.label_order_by.Location = new System.Drawing.Point(6, 146);
-            this.label_order_by.Name = "label_order_by";
-            this.label_order_by.Size = new System.Drawing.Size(53, 13);
-            this.label_order_by.TabIndex = 72;
-            this.label_order_by.Text = "Order_by:";
-            // 
-            // comboBox_order_by
-            // 
-            this.comboBox_order_by.FormattingEnabled = true;
-            this.comboBox_order_by.Items.AddRange(new object[] {
-            "likes_count",
-            "views_count",
-            "newest",
-            "oldest",
-            "newest_popular"});
-            this.comboBox_order_by.Location = new System.Drawing.Point(63, 143);
-            this.comboBox_order_by.Name = "comboBox_order_by";
-            this.comboBox_order_by.Size = new System.Drawing.Size(81, 21);
-            this.comboBox_order_by.TabIndex = 73;
-            this.comboBox_order_by.Text = "likes_count";
             // 
             // radioButton_comunidade
             // 
@@ -291,7 +267,7 @@
             // radioButton_pesquisar
             // 
             this.radioButton_pesquisar.AutoSize = true;
-            this.radioButton_pesquisar.Location = new System.Drawing.Point(6, 94);
+            this.radioButton_pesquisar.Location = new System.Drawing.Point(6, 65);
             this.radioButton_pesquisar.Name = "radioButton_pesquisar";
             this.radioButton_pesquisar.Size = new System.Drawing.Size(74, 17);
             this.radioButton_pesquisar.TabIndex = 56;
@@ -300,9 +276,9 @@
             // 
             // textBox_pesquisar
             // 
-            this.textBox_pesquisar.Location = new System.Drawing.Point(6, 117);
+            this.textBox_pesquisar.Location = new System.Drawing.Point(6, 88);
             this.textBox_pesquisar.Name = "textBox_pesquisar";
-            this.textBox_pesquisar.Size = new System.Drawing.Size(138, 20);
+            this.textBox_pesquisar.Size = new System.Drawing.Size(168, 20);
             this.textBox_pesquisar.TabIndex = 68;
             // 
             // radioButton_subscriptions
@@ -317,14 +293,38 @@
             // 
             // button_ver_num_comunidades
             // 
-            this.button_ver_num_comunidades.Location = new System.Drawing.Point(6, 65);
+            this.button_ver_num_comunidades.Location = new System.Drawing.Point(122, 39);
             this.button_ver_num_comunidades.Name = "button_ver_num_comunidades";
-            this.button_ver_num_comunidades.Size = new System.Drawing.Size(138, 23);
+            this.button_ver_num_comunidades.Size = new System.Drawing.Size(68, 20);
             this.button_ver_num_comunidades.TabIndex = 66;
-            this.button_ver_num_comunidades.Text = "Ver n° lista comunidades";
+            this.button_ver_num_comunidades.Text = "Ver lista N°";
             this.toolTip1.SetToolTip(this.button_ver_num_comunidades, "VER OS NUMEROS DAS \'COMUNIDADES\'");
             this.button_ver_num_comunidades.UseVisualStyleBackColor = true;
             this.button_ver_num_comunidades.Click += new System.EventHandler(this.button_ver_num_comunidades_Click);
+            // 
+            // label_order_by
+            // 
+            this.label_order_by.AutoSize = true;
+            this.label_order_by.Location = new System.Drawing.Point(6, 22);
+            this.label_order_by.Name = "label_order_by";
+            this.label_order_by.Size = new System.Drawing.Size(66, 13);
+            this.label_order_by.TabIndex = 72;
+            this.label_order_by.Text = "Ordenar por:";
+            // 
+            // comboBox_order_by
+            // 
+            this.comboBox_order_by.FormattingEnabled = true;
+            this.comboBox_order_by.Items.AddRange(new object[] {
+            "likes_count",
+            "views_count",
+            "newest",
+            "oldest",
+            "newest_popular"});
+            this.comboBox_order_by.Location = new System.Drawing.Point(96, 19);
+            this.comboBox_order_by.Name = "comboBox_order_by";
+            this.comboBox_order_by.Size = new System.Drawing.Size(94, 21);
+            this.comboBox_order_by.TabIndex = 73;
+            this.comboBox_order_by.Text = "likes_count";
             // 
             // groupBox_funcoes
             // 
@@ -337,7 +337,7 @@
             this.groupBox_funcoes.Controls.Add(this.button_apagar_arquivos);
             this.groupBox_funcoes.Location = new System.Drawing.Point(12, 60);
             this.groupBox_funcoes.Name = "groupBox_funcoes";
-            this.groupBox_funcoes.Size = new System.Drawing.Size(126, 242);
+            this.groupBox_funcoes.Size = new System.Drawing.Size(111, 242);
             this.groupBox_funcoes.TabIndex = 66;
             this.groupBox_funcoes.TabStop = false;
             this.groupBox_funcoes.Text = "FUNÇÕES";
@@ -348,15 +348,15 @@
             this.button_copiar_intro_fim.Name = "button_copiar_intro_fim";
             this.button_copiar_intro_fim.Size = new System.Drawing.Size(95, 23);
             this.button_copiar_intro_fim.TabIndex = 51;
-            this.button_copiar_intro_fim.Text = "Copiar_intro_fim";
+            this.button_copiar_intro_fim.Text = "Copiar_intro/fim";
             this.button_copiar_intro_fim.UseVisualStyleBackColor = true;
             this.button_copiar_intro_fim.Click += new System.EventHandler(this.button_copiar_intro_fim_Click);
             // 
             // button_console
             // 
-            this.button_console.Location = new System.Drawing.Point(258, 279);
+            this.button_console.Location = new System.Drawing.Point(257, 279);
             this.button_console.Name = "button_console";
-            this.button_console.Size = new System.Drawing.Size(67, 23);
+            this.button_console.Size = new System.Drawing.Size(68, 23);
             this.button_console.TabIndex = 72;
             this.button_console.Text = "Console ▼";
             this.toolTip1.SetToolTip(this.button_console, "MOSTRAR/OCULTAR CONSOLE");
@@ -366,27 +366,39 @@
             // linkLabel_sobre
             // 
             this.linkLabel_sobre.AutoSize = true;
-            this.linkLabel_sobre.Location = new System.Drawing.Point(292, 263);
+            this.linkLabel_sobre.Location = new System.Drawing.Point(129, 270);
             this.linkLabel_sobre.Name = "linkLabel_sobre";
-            this.linkLabel_sobre.Size = new System.Drawing.Size(33, 13);
+            this.linkLabel_sobre.Size = new System.Drawing.Size(80, 26);
             this.linkLabel_sobre.TabIndex = 73;
             this.linkLabel_sobre.TabStop = true;
-            this.linkLabel_sobre.Text = "sobre";
+            this.linkLabel_sobre.Text = "Github.com/\r\nDanielSvoboda";
             this.toolTip1.SetToolTip(this.linkLabel_sobre, "https://github.com/DanielSvoboda");
             this.linkLabel_sobre.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_sobre_LinkClicked);
+            // 
+            // groupBox_outros
+            // 
+            this.groupBox_outros.Controls.Add(this.label_order_by);
+            this.groupBox_outros.Controls.Add(this.textBox_paginas);
+            this.groupBox_outros.Controls.Add(this.label_paginas);
+            this.groupBox_outros.Controls.Add(this.comboBox_order_by);
+            this.groupBox_outros.Location = new System.Drawing.Point(129, 186);
+            this.groupBox_outros.Name = "groupBox_outros";
+            this.groupBox_outros.Size = new System.Drawing.Size(196, 81);
+            this.groupBox_outros.TabIndex = 74;
+            this.groupBox_outros.TabStop = false;
+            this.groupBox_outros.Text = "outros";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(331, 306);
+            this.ClientSize = new System.Drawing.Size(333, 306);
+            this.Controls.Add(this.groupBox_outros);
             this.Controls.Add(this.linkLabel_sobre);
             this.Controls.Add(this.groupBox_periodos);
             this.Controls.Add(this.button_console);
-            this.Controls.Add(this.textBox_paginas);
             this.Controls.Add(this.textBox_resultado_nome_arquivos);
-            this.Controls.Add(this.label_paginas);
             this.Controls.Add(this.groupBox_ondeProcurar);
             this.Controls.Add(this.groupBox_funcoes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -399,6 +411,8 @@
             this.groupBox_ondeProcurar.ResumeLayout(false);
             this.groupBox_ondeProcurar.PerformLayout();
             this.groupBox_funcoes.ResumeLayout(false);
+            this.groupBox_outros.ResumeLayout(false);
+            this.groupBox_outros.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -435,6 +449,7 @@
         private System.Windows.Forms.Button button_console;
         private System.Windows.Forms.LinkLabel linkLabel_sobre;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.GroupBox groupBox_outros;
     }
 }
 

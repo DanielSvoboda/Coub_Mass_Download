@@ -77,7 +77,7 @@ namespace Coub_Download
                 }
                 else
                 {
-                    URL = "https://coub.com/api/v2/" + fonte_pesq + "/" + periodo + "?per_page=25&page=" + i;
+                    URL = "https://coub.com/api/v2/" + fonte_pesq + "/" + periodo + "?per_page=25&page=" + i + "&order_by=" + comboBox_order_by.Text;
                 }
 
                 WebRequest solicitacao = HttpWebRequest.Create(URL);
@@ -98,7 +98,7 @@ namespace Coub_Download
             }
 
             log(links_coub);          // add links na tela preta -log
-
+            log("-CONCLUÍDO: 'pegar_links'");
             //var obj_imagem = from p in conteudo_pagina["coubs"]
             //                  select(string)p["picture"];             // links da imagem
 
@@ -108,7 +108,7 @@ namespace Coub_Download
 
 
 
-        public void baixar_coub()           // baixa os arquivos referente aos link's aramzenados na variavel links_coub
+        public void baixar_coub()           // baixa os arquivos referente aos link's armazenados na variavel links_coub
         {
             log("-INICIANDO: 'baixar_coub'...");
 
@@ -121,7 +121,7 @@ namespace Coub_Download
                     baixadeiro.DownloadFile(line, Directory.GetCurrentDirectory() + @"\videos\" + fileName);
                 }
             }
-            log("ARQUIVOS BAIXADOS COM SUCESSO");
+            log("CONCLUÍDO: 'baixar_coub'");
         }
 
 
@@ -132,7 +132,7 @@ namespace Coub_Download
             File.Copy(local_run_app + @"\intro.mp4", local_run_app + @"\videos\1.mp4", true);
             File.Copy(local_run_app + @"\fim.mp4", local_run_app + @"\videos\z.mp4", true);
 
-            log("OS ARQUIVOS intro.mp4(1.mp4) e fim.mp4(z.mp4) foram copiados para pasta /videos");
+            log("-CONCLUÍDO: 'copiar_intro_fim'\nOS ARQUIVOS intro.mp4(1.mp4) e fim.mp4(z.mp4) foram copiados para pasta /videos");
         }
 
 
@@ -153,7 +153,7 @@ namespace Coub_Download
             log("ARQUIVOS NA PASTA /VIDEOS:" + Environment.NewLine + nomes_dos_arquivos);
             File.AppendAllText(directory + @"/nome_dos_arquivos.txt", nomes_dos_arquivos);      // cria o arquivo txt com os nomes na pasta video
 
-            log("nome_dos_arquivos.txt FOI SALVO DA PASTA /VIDEOS");
+            log("-CONCLUÍDO: 'nomes_arquivos'\nnome_dos_arquivos.txt FOI SALVO DA PASTA /VIDEOS");
         }
 
         public void unir_videos()
@@ -185,7 +185,7 @@ namespace Coub_Download
                 log(error); 
             }
 
-            log("VÍDEOS UNIFICADOS! -acima contem o log do ffmpeg");
+            log("-CONCLUÍDO: 'unir_videos'\nVÍDEOS UNIFICADOS! -acima contem o log do ffmpeg");
         }
 
 
@@ -198,7 +198,7 @@ namespace Coub_Download
             foreach (string filePath in arquivos_diretorio_app)
                 File.Delete(filePath);
 
-            log("ARQUIVOS DA PASTA VIDEOS FORAM APAGADOS!");
+            log("-CONCLUÍDO: 'apagar_arquivos'\nARQUIVOS DA PASTA 'VIDEOS' FORAM APAGADOS!");
         }
 
 
@@ -251,6 +251,7 @@ namespace Coub_Download
             console = true;
             this.Size = new Size(960, 713);     //altera o tamanho do form
             this.CenterToScreen();              //centraliza o form
+            button_console.Text = "Console ▲";
         }
 
 
@@ -270,7 +271,6 @@ namespace Coub_Download
 
         private void radioButton_half_CheckedChanged(object sender, EventArgs e)
         { periodo = "half"; }
-
 
 
         private void button_console_Click(object sender, EventArgs e)
