@@ -10,7 +10,7 @@ Exemplo do Vídeo gerado
  [Assistir no YOUTUBE](https://youtu.be/utNNAbg-Zuk)<br>
 <a href="https://youtu.be/utNNAbg-Zuk
 " target="_blank"><img src="https://raw.githubusercontent.com/DanielSvoboda/Coub_Mass_Download/main/Download/logo/logo2.jpg" 
-alt="Texto ALT da imagem aqui" width="300" height="250" border="10" /></a>
+alt="Texto ALT da imagem aqui" width="250" height="250" border="10" /></a>
 <br><br>
   
 Funções 
@@ -20,25 +20,30 @@ Funções
 <br>
 <br>Ou utilize cada função, com botões separados.<br><br>
 &nbsp;•Pegar_links
-<br>Faz um get no coub com o link personalisado da busca, e retorna um json.<br><br>
+<br>Faz um get no coub com o link personalisado da busca, e retorna um json.<br>
+(Warning. This API is no longer supported and deprecated since Feb 1, 2021.) 'ainda está funcionando'<br><br>
 &nbsp;•Baixar_Coub<br>
-Baixar os arquivos referente aos link's armazenados na variavel links_coub.<br><br>
+Baixa os arquivos referente aos link's armazenados na variavel links_coub, gerados a a função acima,<br><br>
 &nbsp;•Copiar_intro_fim<br>
-Copiar 2 arquivos de vídeo, que seram usados na frente e no final do vídeo.<br><br>
+Copia 2 arquivos de vídeo localizados na pasta do executavel para pasta video, que serão usados na frente e no final do vídeo.<br>
+São copiados com os nomes:<br>
+intro.mp4 -> \videos\1.mp4 <br>
+fim.mp4   -> \videos\z.mp4 <br><br>
 &nbsp;•Nomes_arquivos<br>
 Salva os nomes dos arquivos .mp4 da pasta /videos em nome_dos_arquivos.txt<br>
 salva em ordem alfabetica tendo o (intro)1.mp4 como primeiro e (fim)z.mp4 em ultimo.<br><br>
 &nbsp;•Unir_videos<br>
-Unifica todos esses vídeos na ordem utilizando o ffmpeg e gera o output.mp4<br>
-mantendo o aspect ratio original individualmente de cada vídeo.<br><br>
+Unifica todos esses vídeos conforme a ordem listada no arquivo: nome_dos_arquivos.txt <br>
+utilizando o ffmpeg mantendo o aspect ratio original individualmente de cada vídeo.<br>
+Acredito que leva o tempo do vídeo, se o vídeo final vai ter 10 minutos, vai demorar 10 para unificar e gera o output.mp4<br><br>
 &nbsp;•Apagar_arquivos<br>
-Apaga dos os arquivos da pasta /videos.<br>
+Apaga todos os arquivos da pasta /videos.<br>
   <br>
   
 Print's
 ---------  
 <img width="350" alt="portfolio_view" src="https://raw.githubusercontent.com/DanielSvoboda/Coub_Mass_Download/main/1.png">
-<br>Botão cosole<br>
+<br><br>Botão cosole<br>
 <img width="750" alt="portfolio_view" src="https://raw.githubusercontent.com/DanielSvoboda/Coub_Mass_Download/main/2.png">
 <br>
 
@@ -51,6 +56,15 @@ Observações
 ---------  
 O arquivo ffmpeg tem que estar na mesma pasta do Coub_Mass_Download.exe, juntamente com todos os outros arquivos.
 <br> Para funcionar é necessario baixar todo o conteudo da pasta: [DOWNLOAD](https://github.com/DanielSvoboda/Coub_Mass_Download/tree/main/Download)
+<br>
+-Coub__Mass_Download.exe
+<br>
+-ffmpeg.exe
+<br>
+-fim.mp4
+<br>
+-intro.mp4
+
 <br><br>
 Aproximadamente: <br>
 Total de vídeos = 25 vídeos * Paginas <br>
@@ -63,7 +77,7 @@ ffmpeg -safe 0 -f concat -i videos/nome_dos_arquivos.txt -vf scale=iw*min(1280/i
 <br><br>
 A logo foi criada no photoshop, e a intro/fim no sony vegas.<br>
 Nesta pasta tem algumas [imagens](https://github.com/DanielSvoboda/Coub_Mass_Download/tree/main/Download/logo)
-<br><br>
+<br><br><br><br>
 
 
 
