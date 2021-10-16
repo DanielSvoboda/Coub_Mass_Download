@@ -3,30 +3,41 @@ Programa em C# windows forms .NET Framework 4.7.2
 <br><br>
 Com o objetivo de realizar:
 <br>
-&nbsp;•Download massiso de vídeos do coub com alguns 'filtros' de busca, e unifica todos os vídeos.
+&nbsp;•Download em massa de vídeos do coub com alguns 'filtros' de busca, e unifica todos os vídeos.
 
 Exemplo do Vídeo gerado
 --------- 
  [Assistir no YOUTUBE](https://youtu.be/utNNAbg-Zuk)<br>
 <a href="https://youtu.be/utNNAbg-Zuk
 " target="_blank"><img src="https://raw.githubusercontent.com/DanielSvoboda/Coub_Mass_Download/main/Download/logo/logo2.jpg" 
-alt="Texto ALT da imagem aqui" width="300" height="200" border="10" /></a>
-
+alt="Texto ALT da imagem aqui" width="300" height="250" border="10" /></a>
+<br><br>
   
 Funções 
 ---------  
-&nbsp;•Pegar_links&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Faz um get no coub com o link personalisado da busca, retona um json)<br>
-&nbsp;•Baixar_Coub&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Baixar os arquivos referente aos link's armazenados na variavel links_coub)<br>
-&nbsp;•Copiar_intro_fim&nbsp;(Copiar 2 arquivos de vídeo, que seram usados na frente e no final do vídeo)<br>
-&nbsp;•Nomes_arquivos&nbsp;(Salva os nome dos arquivos .mp4 da pasta /videos em nome_dos_arquivos.txt<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;esse arquivo contem os nomes em ordem alfabetica tendo o (intro)1.mp4 primeiro e (fim)z.mp4 em ultimo)<br>
-&nbsp;•Unir_videos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Unifica todos esses vídeos na ordem e gera o output.mp4, mantendo o aspect ratio original individualmente)<br>
-&nbsp;•Apagar_arquivos&nbsp;(Apaga dos os arquivos da pasta /videos)<br>
+&nbsp;•INICIAR (TUDO)
+<br>Executa todas as funções abaixo.
+<br>
+<br>Ou utilize cada função, com botões separados.<br><br>
+&nbsp;•Pegar_links
+<br>Faz um get no coub com o link personalisado da busca, e retorna um json.<br><br>
+&nbsp;•Baixar_Coub<br>
+Baixar os arquivos referente aos link's armazenados na variavel links_coub.<br><br>
+&nbsp;•Copiar_intro_fim<br>
+Copiar 2 arquivos de vídeo, que seram usados na frente e no final do vídeo.<br><br>
+&nbsp;•Nomes_arquivos<br>
+Salva os nomes dos arquivos .mp4 da pasta /videos em nome_dos_arquivos.txt<br>
+salva em ordem alfabetica tendo o (intro)1.mp4 como primeiro e (fim)z.mp4 em ultimo.<br><br>
+&nbsp;•Unir_videos<br>
+Unifica todos esses vídeos na ordem utilizando o ffmpeg e gera o output.mp4<br>
+mantendo o aspect ratio original individualmente de cada vídeo.<br><br>
+&nbsp;•Apagar_arquivos<br>
+Apaga dos os arquivos da pasta /videos.<br>
   <br>
   
 Print's
 ---------  
-<img width="300" alt="portfolio_view" src="https://raw.githubusercontent.com/DanielSvoboda/Coub_Mass_Download/main/1.png">
+<img width="350" alt="portfolio_view" src="https://raw.githubusercontent.com/DanielSvoboda/Coub_Mass_Download/main/1.png">
 <br>Botão cosole<br>
 <img width="750" alt="portfolio_view" src="https://raw.githubusercontent.com/DanielSvoboda/Coub_Mass_Download/main/2.png">
 <br>
@@ -34,7 +45,7 @@ Print's
 Depêndencia 
 ---------  
   •Newtonsoft.Json https://www.nuget.org/packages/Newtonsoft.Json/
-<br><br><br>
+<br><br>
   
 Observações
 ---------  
@@ -42,14 +53,17 @@ O arquivo ffmpeg tem que estar na mesma pasta do Coub_Mass_Download.exe, juntame
 <br> Para funcionar é necessario baixar todo o conteudo da pasta: [DOWNLOAD](https://github.com/DanielSvoboda/Coub_Mass_Download/tree/main/Download)
 <br><br>
 Aproximadamente: <br>
-Total vídeo = 25 vídeos * Paginas <br>
-Tempo total(min) = Total vídeo*<>10/60
+Total de vídeos = 25 vídeos * Paginas <br>
+Tempo total(min) = Total de vídeos * 10/60
 <br><br>
-Tentei unificar vídeos com quantidade diferentes de fps, porem, mesmo renderizando com formas específicos e parametros de encoding não tive bons resultados para criar um arquivo compativel da intro.mp4 e fim.mp4, tentei parametros diferentes no ffmpeg tambem sem exito. Então encodei a 'intro' e 'fim' usando a propria função Unir_videos, no nome_dos_arquivos.txt inclui apenas o intro.mp4 e repeti o processo com o fim.mp4, gerando o output.mp4 desse unico arquivo que renomeie para o nome anterior, e assim ele ficou igual aos demais que são baixados do coub e não tem problemas de desincronia dos frames do audio e do vídeo.
-<br><b>
+Tentei unificar os vídeos com diferentes taxa de atualização 'fps', porem, mesmo renderizando com formatos específicos e parametros de encoding não tive bons resultados para criar um arquivo compativel da intro.mp4 e fim.mp4, tentei parametros diferentes no ffmpeg tambem sem exito. Então encodei a 'intro' e 'fim' usando a propria função Unir_videos, no nome_dos_arquivos.txt inclui apenas a intro.mp4 e repeti o processo com o fim.mp4, gerando o output.mp4 desse unico arquivo que renomeie para o nome anterior, e assim ele ficou igual aos demais que são baixados do coub e não teve problemas de desincronia dos frames do vídeo e do áudio, ou qualquer corrupção dos arquivos.
+<br><br>
 Comando ffmpeg da função Unir_vídeos:<br>
 ffmpeg -safe 0 -f concat -i videos/nome_dos_arquivos.txt -vf scale=iw*min(1280/iw\,720/ih):ih*min(1280/iw\,720/ih),pad=1280:720:(1280-iw*min(1280/iw\,720/ih))/2:(720-ih*min(1280/iw\,720/ih))/2 output.mp4";
-<br><br><br>
+<br><br>
+A logo foi criada no photoshop, e a intro/fim no sony vegas.<br>
+Nesta pasta tem algumas [imagens](https://github.com/DanielSvoboda/Coub_Mass_Download/tree/main/Download/logo)
+<br><br>
 
 
 
