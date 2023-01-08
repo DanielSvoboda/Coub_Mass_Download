@@ -42,7 +42,6 @@
             this.radioButton_quarter = new System.Windows.Forms.RadioButton();
             this.radioButton_monthly = new System.Windows.Forms.RadioButton();
             this.radioButton_half = new System.Windows.Forms.RadioButton();
-            this.textBox_comunidade = new System.Windows.Forms.TextBox();
             this.textBox_paginas = new System.Windows.Forms.TextBox();
             this.label_paginas = new System.Windows.Forms.Label();
             this.groupBox_periodos = new System.Windows.Forms.GroupBox();
@@ -51,7 +50,6 @@
             this.radioButton_pesquisar = new System.Windows.Forms.RadioButton();
             this.textBox_pesquisar = new System.Windows.Forms.TextBox();
             this.radioButton_subscriptions = new System.Windows.Forms.RadioButton();
-            this.button_ver_num_comunidades = new System.Windows.Forms.Button();
             this.label_order_by = new System.Windows.Forms.Label();
             this.comboBox_order_by = new System.Windows.Forms.ComboBox();
             this.groupBox_funcoes = new System.Windows.Forms.GroupBox();
@@ -60,6 +58,9 @@
             this.linkLabel_sobre = new System.Windows.Forms.LinkLabel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox_outros = new System.Windows.Forms.GroupBox();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.comboBox_Comunidade = new System.Windows.Forms.ComboBox();
             this.groupBox_periodos.SuspendLayout();
             this.groupBox_ondeProcurar.SuspendLayout();
             this.groupBox_funcoes.SuspendLayout();
@@ -71,19 +72,19 @@
             this.textBox_resultado_nome_arquivos.BackColor = System.Drawing.SystemColors.MenuText;
             this.textBox_resultado_nome_arquivos.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_resultado_nome_arquivos.ForeColor = System.Drawing.Color.Lime;
-            this.textBox_resultado_nome_arquivos.Location = new System.Drawing.Point(12, 308);
+            this.textBox_resultado_nome_arquivos.Location = new System.Drawing.Point(12, 258);
             this.textBox_resultado_nome_arquivos.Multiline = true;
             this.textBox_resultado_nome_arquivos.Name = "textBox_resultado_nome_arquivos";
             this.textBox_resultado_nome_arquivos.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_resultado_nome_arquivos.Size = new System.Drawing.Size(920, 365);
+            this.textBox_resultado_nome_arquivos.Size = new System.Drawing.Size(1007, 404);
             this.textBox_resultado_nome_arquivos.TabIndex = 43;
             // 
             // Botao_TUDO
             // 
             this.Botao_TUDO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Botao_TUDO.Location = new System.Drawing.Point(6, 17);
+            this.Botao_TUDO.Location = new System.Drawing.Point(6, 19);
             this.Botao_TUDO.Name = "Botao_TUDO";
-            this.Botao_TUDO.Size = new System.Drawing.Size(95, 42);
+            this.Botao_TUDO.Size = new System.Drawing.Size(99, 42);
             this.Botao_TUDO.TabIndex = 41;
             this.Botao_TUDO.Text = "INICIAR (TUDO)";
             this.Botao_TUDO.UseVisualStyleBackColor = true;
@@ -91,9 +92,9 @@
             // 
             // button_pegar_links
             // 
-            this.button_pegar_links.Location = new System.Drawing.Point(6, 65);
+            this.button_pegar_links.Location = new System.Drawing.Point(6, 67);
             this.button_pegar_links.Name = "button_pegar_links";
-            this.button_pegar_links.Size = new System.Drawing.Size(70, 23);
+            this.button_pegar_links.Size = new System.Drawing.Size(95, 23);
             this.button_pegar_links.TabIndex = 45;
             this.button_pegar_links.Text = "Pegar_links";
             this.button_pegar_links.UseVisualStyleBackColor = true;
@@ -101,7 +102,7 @@
             // 
             // button_nomes_arquivos
             // 
-            this.button_nomes_arquivos.Location = new System.Drawing.Point(6, 153);
+            this.button_nomes_arquivos.Location = new System.Drawing.Point(6, 151);
             this.button_nomes_arquivos.Name = "button_nomes_arquivos";
             this.button_nomes_arquivos.Size = new System.Drawing.Size(95, 23);
             this.button_nomes_arquivos.TabIndex = 48;
@@ -111,19 +112,19 @@
             // 
             // button_baixar_coub
             // 
-            this.button_baixar_coub.Location = new System.Drawing.Point(6, 94);
+            this.button_baixar_coub.Location = new System.Drawing.Point(6, 93);
             this.button_baixar_coub.Name = "button_baixar_coub";
-            this.button_baixar_coub.Size = new System.Drawing.Size(75, 23);
+            this.button_baixar_coub.Size = new System.Drawing.Size(95, 23);
             this.button_baixar_coub.TabIndex = 47;
-            this.button_baixar_coub.Text = "Baixar_Coub";
+            this.button_baixar_coub.Text = "Baixar do coub";
             this.button_baixar_coub.UseVisualStyleBackColor = true;
             this.button_baixar_coub.Click += new System.EventHandler(this.button_baixar_coub_Click);
             // 
             // button_unir_videos
             // 
-            this.button_unir_videos.Location = new System.Drawing.Point(6, 182);
+            this.button_unir_videos.Location = new System.Drawing.Point(6, 180);
             this.button_unir_videos.Name = "button_unir_videos";
-            this.button_unir_videos.Size = new System.Drawing.Size(71, 23);
+            this.button_unir_videos.Size = new System.Drawing.Size(95, 23);
             this.button_unir_videos.TabIndex = 49;
             this.button_unir_videos.Text = "Unir_videos";
             this.button_unir_videos.UseVisualStyleBackColor = true;
@@ -131,7 +132,7 @@
             // 
             // button_apagar_arquivos
             // 
-            this.button_apagar_arquivos.Location = new System.Drawing.Point(6, 211);
+            this.button_apagar_arquivos.Location = new System.Drawing.Point(6, 209);
             this.button_apagar_arquivos.Name = "button_apagar_arquivos";
             this.button_apagar_arquivos.Size = new System.Drawing.Size(95, 23);
             this.button_apagar_arquivos.TabIndex = 50;
@@ -196,28 +197,20 @@
             this.radioButton_half.UseVisualStyleBackColor = true;
             this.radioButton_half.CheckedChanged += new System.EventHandler(this.radioButton_half_CheckedChanged);
             // 
-            // textBox_comunidade
-            // 
-            this.textBox_comunidade.Location = new System.Drawing.Point(96, 39);
-            this.textBox_comunidade.Name = "textBox_comunidade";
-            this.textBox_comunidade.Size = new System.Drawing.Size(20, 20);
-            this.textBox_comunidade.TabIndex = 56;
-            this.textBox_comunidade.Text = "20";
-            // 
             // textBox_paginas
             // 
-            this.textBox_paginas.Location = new System.Drawing.Point(96, 53);
+            this.textBox_paginas.Location = new System.Drawing.Point(232, 12);
             this.textBox_paginas.Name = "textBox_paginas";
             this.textBox_paginas.Size = new System.Drawing.Size(20, 20);
             this.textBox_paginas.TabIndex = 61;
-            this.textBox_paginas.Text = "3";
+            this.textBox_paginas.Text = "1";
             this.toolTip1.SetToolTip(this.textBox_paginas, "Aproximadamente: \r\n\r\nTotal vídeo = 25 vídeos * Paginas\r\nTempo total(min) = Total " +
         "vídeo*10/60");
             // 
             // label_paginas
             // 
             this.label_paginas.AutoSize = true;
-            this.label_paginas.Location = new System.Drawing.Point(6, 56);
+            this.label_paginas.Location = new System.Drawing.Point(178, 16);
             this.label_paginas.Name = "label_paginas";
             this.label_paginas.Size = new System.Drawing.Size(48, 13);
             this.label_paginas.TabIndex = 62;
@@ -239,15 +232,14 @@
             // 
             // groupBox_ondeProcurar
             // 
+            this.groupBox_ondeProcurar.Controls.Add(this.comboBox_Comunidade);
             this.groupBox_ondeProcurar.Controls.Add(this.radioButton_comunidade);
             this.groupBox_ondeProcurar.Controls.Add(this.radioButton_pesquisar);
             this.groupBox_ondeProcurar.Controls.Add(this.textBox_pesquisar);
             this.groupBox_ondeProcurar.Controls.Add(this.radioButton_subscriptions);
-            this.groupBox_ondeProcurar.Controls.Add(this.button_ver_num_comunidades);
-            this.groupBox_ondeProcurar.Controls.Add(this.textBox_comunidade);
-            this.groupBox_ondeProcurar.Location = new System.Drawing.Point(129, 60);
+            this.groupBox_ondeProcurar.Location = new System.Drawing.Point(12, 105);
             this.groupBox_ondeProcurar.Name = "groupBox_ondeProcurar";
-            this.groupBox_ondeProcurar.Size = new System.Drawing.Size(196, 120);
+            this.groupBox_ondeProcurar.Size = new System.Drawing.Size(313, 90);
             this.groupBox_ondeProcurar.TabIndex = 64;
             this.groupBox_ondeProcurar.TabStop = false;
             this.groupBox_ondeProcurar.Text = "Onde procurar?";
@@ -276,9 +268,9 @@
             // 
             // textBox_pesquisar
             // 
-            this.textBox_pesquisar.Location = new System.Drawing.Point(6, 88);
+            this.textBox_pesquisar.Location = new System.Drawing.Point(86, 64);
             this.textBox_pesquisar.Name = "textBox_pesquisar";
-            this.textBox_pesquisar.Size = new System.Drawing.Size(168, 20);
+            this.textBox_pesquisar.Size = new System.Drawing.Size(220, 20);
             this.textBox_pesquisar.TabIndex = 68;
             // 
             // radioButton_subscriptions
@@ -291,21 +283,10 @@
             this.radioButton_subscriptions.Text = "Subscriptions";
             this.radioButton_subscriptions.UseVisualStyleBackColor = true;
             // 
-            // button_ver_num_comunidades
-            // 
-            this.button_ver_num_comunidades.Location = new System.Drawing.Point(122, 39);
-            this.button_ver_num_comunidades.Name = "button_ver_num_comunidades";
-            this.button_ver_num_comunidades.Size = new System.Drawing.Size(68, 20);
-            this.button_ver_num_comunidades.TabIndex = 66;
-            this.button_ver_num_comunidades.Text = "Ver lista N°";
-            this.toolTip1.SetToolTip(this.button_ver_num_comunidades, "VER OS NUMEROS DAS \'COMUNIDADES\'");
-            this.button_ver_num_comunidades.UseVisualStyleBackColor = true;
-            this.button_ver_num_comunidades.Click += new System.EventHandler(this.button_ver_num_comunidades_Click);
-            // 
             // label_order_by
             // 
             this.label_order_by.AutoSize = true;
-            this.label_order_by.Location = new System.Drawing.Point(6, 22);
+            this.label_order_by.Location = new System.Drawing.Point(6, 16);
             this.label_order_by.Name = "label_order_by";
             this.label_order_by.Size = new System.Drawing.Size(66, 13);
             this.label_order_by.TabIndex = 72;
@@ -320,7 +301,7 @@
             "newest",
             "oldest",
             "newest_popular"});
-            this.comboBox_order_by.Location = new System.Drawing.Point(96, 19);
+            this.comboBox_order_by.Location = new System.Drawing.Point(78, 12);
             this.comboBox_order_by.Name = "comboBox_order_by";
             this.comboBox_order_by.Size = new System.Drawing.Size(94, 21);
             this.comboBox_order_by.TabIndex = 73;
@@ -335,16 +316,16 @@
             this.groupBox_funcoes.Controls.Add(this.button_nomes_arquivos);
             this.groupBox_funcoes.Controls.Add(this.button_unir_videos);
             this.groupBox_funcoes.Controls.Add(this.button_apagar_arquivos);
-            this.groupBox_funcoes.Location = new System.Drawing.Point(12, 60);
+            this.groupBox_funcoes.Location = new System.Drawing.Point(330, 12);
             this.groupBox_funcoes.Name = "groupBox_funcoes";
-            this.groupBox_funcoes.Size = new System.Drawing.Size(111, 242);
+            this.groupBox_funcoes.Size = new System.Drawing.Size(111, 240);
             this.groupBox_funcoes.TabIndex = 66;
             this.groupBox_funcoes.TabStop = false;
             this.groupBox_funcoes.Text = "FUNÇÕES";
             // 
             // button_copiar_intro_fim
             // 
-            this.button_copiar_intro_fim.Location = new System.Drawing.Point(6, 124);
+            this.button_copiar_intro_fim.Location = new System.Drawing.Point(6, 122);
             this.button_copiar_intro_fim.Name = "button_copiar_intro_fim";
             this.button_copiar_intro_fim.Size = new System.Drawing.Size(95, 23);
             this.button_copiar_intro_fim.TabIndex = 51;
@@ -354,7 +335,7 @@
             // 
             // button_console
             // 
-            this.button_console.Location = new System.Drawing.Point(257, 279);
+            this.button_console.Location = new System.Drawing.Point(257, 229);
             this.button_console.Name = "button_console";
             this.button_console.Size = new System.Drawing.Size(68, 23);
             this.button_console.TabIndex = 72;
@@ -366,7 +347,7 @@
             // linkLabel_sobre
             // 
             this.linkLabel_sobre.AutoSize = true;
-            this.linkLabel_sobre.Location = new System.Drawing.Point(129, 270);
+            this.linkLabel_sobre.Location = new System.Drawing.Point(9, 226);
             this.linkLabel_sobre.Name = "linkLabel_sobre";
             this.linkLabel_sobre.Size = new System.Drawing.Size(80, 26);
             this.linkLabel_sobre.TabIndex = 73;
@@ -381,19 +362,65 @@
             this.groupBox_outros.Controls.Add(this.textBox_paginas);
             this.groupBox_outros.Controls.Add(this.label_paginas);
             this.groupBox_outros.Controls.Add(this.comboBox_order_by);
-            this.groupBox_outros.Location = new System.Drawing.Point(129, 186);
+            this.groupBox_outros.Location = new System.Drawing.Point(12, 60);
             this.groupBox_outros.Name = "groupBox_outros";
-            this.groupBox_outros.Size = new System.Drawing.Size(196, 81);
+            this.groupBox_outros.Size = new System.Drawing.Size(313, 39);
             this.groupBox_outros.TabIndex = 74;
             this.groupBox_outros.TabStop = false;
-            this.groupBox_outros.Text = "outros";
+            this.groupBox_outros.Text = "Outros";
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(447, 105);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(100, 23);
+            this.progressBar2.TabIndex = 75;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(447, 79);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 76;
+            // 
+            // comboBox_Comunidade
+            // 
+            this.comboBox_Comunidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Comunidade.FormattingEnabled = true;
+            this.comboBox_Comunidade.Items.AddRange(new object[] {
+            "animals-pets",
+            "blogging",
+            "standup-jokes",
+            "mashup",
+            "anime",
+            "movies",
+            "gaming",
+            "cartoons",
+            "art",
+            "live-pictures",
+            "music",
+            "sports",
+            "science-technology",
+            "food-kitchen",
+            "celebrity",
+            "nature-travel",
+            "fashion",
+            "dance",
+            "cars",
+            "memes"});
+            this.comboBox_Comunidade.Location = new System.Drawing.Point(86, 41);
+            this.comboBox_Comunidade.Name = "comboBox_Comunidade";
+            this.comboBox_Comunidade.Size = new System.Drawing.Size(117, 21);
+            this.comboBox_Comunidade.TabIndex = 77;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(333, 306);
+            this.ClientSize = new System.Drawing.Size(447, 258);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.groupBox_outros);
             this.Controls.Add(this.linkLabel_sobre);
             this.Controls.Add(this.groupBox_periodos);
@@ -432,12 +459,10 @@
         private System.Windows.Forms.RadioButton radioButton_quarter;
         private System.Windows.Forms.RadioButton radioButton_monthly;
         private System.Windows.Forms.RadioButton radioButton_half;
-        private System.Windows.Forms.TextBox textBox_comunidade;
         private System.Windows.Forms.TextBox textBox_paginas;
         private System.Windows.Forms.Label label_paginas;
         private System.Windows.Forms.GroupBox groupBox_periodos;
         private System.Windows.Forms.GroupBox groupBox_ondeProcurar;
-        private System.Windows.Forms.Button button_ver_num_comunidades;
         private System.Windows.Forms.TextBox textBox_pesquisar;
         private System.Windows.Forms.RadioButton radioButton_pesquisar;
         private System.Windows.Forms.RadioButton radioButton_comunidade;
@@ -450,6 +475,9 @@
         private System.Windows.Forms.LinkLabel linkLabel_sobre;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox groupBox_outros;
+        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ComboBox comboBox_Comunidade;
     }
 }
 

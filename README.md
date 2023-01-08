@@ -3,7 +3,7 @@ Programa em C# windows forms .NET Framework 4.7.2
 <br><br>
 Com o objetivo de realizar:
 <br>
-&nbsp;•Download em massa de vídeos do coub com alguns 'filtros' de busca, e unifica todos os vídeos.
+&nbsp;•Download em massa de vídeos do coub com alguns 'filtros' de busca, e unifica todos os vídeos, com uma 'intro' e um 'fim'.
 
 Exemplo do Vídeo gerado
 --------- 
@@ -23,7 +23,7 @@ Funções
 <br>Faz um get no coub com o link personalisado da busca, e retorna um json.<br>
 (Warning. This API is no longer supported and deprecated since Feb 1, 2021.) 'ainda está funcionando'<br><br>
 &nbsp;•Baixar_Coub<br>
-Baixa os arquivos referente aos link's armazenados na variavel links_coub, gerados a a função acima,<br><br>
+Baixa os arquivos referente aos link's armazenados na variavel links_coub, gerados com a função acima,<br><br>
 &nbsp;•Copiar_intro_fim<br>
 Copia 2 arquivos de vídeo localizados na pasta do executavel para pasta video, que serão usados na frente e no final do vídeo.<br>
 São copiados com os nomes:<br>
@@ -34,8 +34,7 @@ Salva os nomes dos arquivos .mp4 da pasta /videos em nome_dos_arquivos.txt<br>
 salva em ordem alfabetica tendo o (intro)1.mp4 como primeiro e (fim)z.mp4 em ultimo.<br><br>
 &nbsp;•Unir_videos<br>
 Unifica todos esses vídeos conforme a ordem listada no arquivo: nome_dos_arquivos.txt <br>
-utilizando o ffmpeg mantendo o aspect ratio original individualmente de cada vídeo.<br>
-Acredito que leva o tempo do vídeo, se o vídeo final vai ter 10 minutos, vai demorar 10 para unificar e gera o output.mp4<br><br>
+utilizando o ffmpeg mantendo o aspect ratio original individualmente de cada vídeo.<br><br>
 &nbsp;•Apagar_arquivos<br>
 Apaga todos os arquivos da pasta /videos.<br>
   <br>
@@ -65,10 +64,6 @@ O arquivo ffmpeg tem que estar na mesma pasta do Coub_Mass_Download.exe, juntame
 <br>
 -intro.mp4
 
-<br><br>
-Aproximadamente: <br>
-Total de vídeos = 25 vídeos * Paginas <br>
-Tempo total(min) = Total de vídeos * 10/60
 <br><br>
 Tentei unificar os vídeos com diferentes taxa de atualização 'fps', porem, mesmo renderizando com formatos específicos e parametros de encoding não tive bons resultados para criar um arquivo compativel da intro.mp4 e fim.mp4, tentei parametros diferentes no ffmpeg tambem sem exito. Então encodei a 'intro' e 'fim' usando a propria função Unir_videos, no nome_dos_arquivos.txt inclui apenas a intro.mp4 e repeti o processo com o fim.mp4, gerando o output.mp4 desse unico arquivo que renomeie para o nome anterior, e assim ele ficou igual aos demais que são baixados do coub e não teve problemas de desincronia dos frames do vídeo e do áudio, ou qualquer corrupção dos arquivos.
 <br><br>

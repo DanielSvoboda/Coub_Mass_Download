@@ -1,11 +1,13 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Coub_Download
@@ -15,6 +17,8 @@ namespace Coub_Download
         public Form1()
         {
             InitializeComponent();
+
+            comboBox_Comunidade.Text = "memes";
         }
 
         string local_run_app = Directory.GetCurrentDirectory();  // diretorio da execução do programa 
@@ -24,16 +28,19 @@ namespace Coub_Download
         string fonte_pesq = "timeline/community/memes";
         bool console = false;
 
+        int total_para_baixar = 0;
+        int total_ja_baixados = 0;
+
         private void Botao_Click(object sender, EventArgs e)    // botao unico que faz tudo
         {
             pegar_links();              // OK
-          //REMOVER_DUPLI();            // desnecessário
+         // REMOVER_DUPLI();            // desnecessário
             baixar_coub();              // OK
             copiar_intro_fim();         // OK
             nomes_arquivos();           // OK
             unir_videos();              // OK
             apagar_arquivos();          // OK
-
+             
             MessageBox.Show("TUDO Ok !!!");
         }
 
@@ -45,21 +52,13 @@ namespace Coub_Download
 
         void pegar_links()     // obter link's dos vídeos
         {
+            total_para_baixar = 0;
             links_coub = "";
             log("INICIANDO: 'pegar_links'...");
 
             if (radioButton_comunidade.Checked == true)
             {
-                if (int.Parse(textBox_comunidade.Text) < 0 ^ int.Parse(textBox_comunidade.Text) > 23)
-                {
-                    MessageBox.Show("Em 'Comunidade' deve colocar um numero entre 0 a 23, veja a lista!");
-                    return;
-                }
-                else
-                {
-                    string[] community = { "animals-pets", "blogging", "standup-jokes", "mashup", "anime", "movies", "gaming", "cartoons", "art", "live-pictures", "music", "news", "sports", "science-technology", "food-kitchen", "celebrity", "nature-travel", "fashion", "dance", "cars", "memes", "nsfw", "featured", "coub-of-the-day" };
-                    fonte_pesq = "timeline/community/" + community[int.Parse(textBox_comunidade.Text)];
-                }
+                fonte_pesq = "timeline/community/" + comboBox_Comunidade.Text;
             }
 
             if (radioButton_subscriptions.Checked == true)
@@ -85,18 +84,26 @@ namespace Coub_Download
                 StreamReader ler_get = new StreamReader(resposta.GetResponseStream());
                 JObject conteudo_pagina = JObject.Parse(ler_get.ReadToEnd());
 
+                progressBar1.Value = 10;
+
                 var obj_video = from p in conteudo_pagina["coubs"]
                                 select (string)p["file_versions"]["share"]["default"];     // links dos videos
 
                 foreach (var item in obj_video)
                 {
                     if (item != null)                                   // se o link nao for 'null'
-                    { links_coub += item + Environment.NewLine; }       // alimenta a variavel com os links e pula linha                    
+                    {
+                        links_coub += item + Environment.NewLine;       // alimenta a variavel com os links e pula linha      
+                        total_para_baixar++;
+                        progressBar1.Value++;
+                    }                     
                 }
 
-                links_coub = links_coub.Remove(links_coub.Length - 1);  // remove o ultimo espaço 
+               // links_coub = links_coub.Remove(links_coub.Length - 1);  // remove o ultimo espaço 
             }
 
+            progressBar1.Value = 100;
+            progressBar2.Maximum = total_para_baixar;
             log(links_coub);          // add links na tela preta -log
             log("-CONCLUÍDO: 'pegar_links'");
             //var obj_imagem = from p in conteudo_pagina["coubs"]
@@ -107,10 +114,22 @@ namespace Coub_Download
         }
 
 
-
         public void baixar_coub()           // baixa os arquivos referente aos link's armazenados na variavel links_coub
         {
             log("-INICIANDO: 'baixar_coub'...");
+            total_ja_baixados = 0;
+            progressBar2.Value = 0;
+
+            //using (var reader = new StringReader(links_coub))
+            //    for (string url_line = reader.ReadLine(); url_line != null; url_line = reader.ReadLine())
+            //    {
+            //        string nomeDoArquivo = Path.GetFileName(url_line);
+            //        var client = new WebClient();
+
+            //        client.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
+            //        client.DownloadFileAsync(new Uri(url_line), Directory.GetCurrentDirectory() + @"\videos\" + nomeDoArquivo);
+
+            //    }
 
             using (var baixadeiro = new WebClient())
             using (var reader = new StringReader(links_coub))
@@ -119,10 +138,20 @@ namespace Coub_Download
                 {
                     string fileName = Path.GetFileName(line);
                     baixadeiro.DownloadFile(line, Directory.GetCurrentDirectory() + @"\videos\" + fileName);
+                    total_ja_baixados++;
+                    progressBar2.Value++;
                 }
             }
-            log("CONCLUÍDO: 'baixar_coub'");
         }
+
+
+        public void Completed(object sender, AsyncCompletedEventArgs e)
+        {
+            total_ja_baixados++; //da pra apagar quase tudo isso
+            progressBar2.Value++;
+            groupBox_funcoes.Text = total_ja_baixados.ToString();            
+        }
+
 
 
         public void copiar_intro_fim()      // copia os arquivos de intro e fim para pasta videos, renomeado
@@ -156,36 +185,47 @@ namespace Coub_Download
             log("-CONCLUÍDO: 'nomes_arquivos'\nnome_dos_arquivos.txt FOI SALVO DA PASTA /VIDEOS");
         }
 
+
+
         public void unir_videos()
         {
             log("-INICIANDO: 'unir_videos'...");
 
-            //ffmpeg -safe 0 -f concat -i videos/nome_dos_arquivos.txt -c copy output.mp4
-            //string comando = " -y -f concat -r 25 -safe 0 -i videos/nome_dos_arquivos.txt -c copy output.mp4";
+            //if (total_ja_baixados == total_para_baixar)
+            //{
+                //ffmpeg -safe 0 -f concat -i videos/nome_dos_arquivos.txt -c copy output.mp4
+                //string comando = " -y -f concat -r 25 -safe 0 -i videos/nome_dos_arquivos.txt -c copy output.mp4";
 
-            string comando = @" -safe 0 -f concat -i videos/nome_dos_arquivos.txt -vf scale=iw*min(1280/iw\,720/ih):ih*min(1280/iw\,720/ih),pad=1280:720:(1280-iw*min(1280/iw\,720/ih))/2:(720-ih*min(1280/iw\,720/ih))/2 output.mp4";
+                string comando = @" -safe 0 -f concat -i videos/nome_dos_arquivos.txt -vf scale=iw*min(1280/iw\,720/ih):ih*min(1280/iw\,720/ih),pad=1280:720:(1280-iw*min(1280/iw\,720/ih))/2:(720-ih*min(1280/iw\,720/ih))/2 output.mp4";
 
-            string localFfmpeg = Path.Combine(local_run_app, "ffmpeg.exe");
+                string localFfmpeg = Path.Combine(local_run_app, "ffmpeg.exe");
 
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.CreateNoWindow = true;   // true = invisivel   false=mostra o console preto
-            startInfo.UseShellExecute = false; // só funciona false
-            startInfo.FileName = localFfmpeg;
-            //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.Arguments = comando;
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.CreateNoWindow = true;   // true = invisivel   false=mostra o console preto
+                startInfo.UseShellExecute = false; // só funciona false
+                startInfo.FileName = localFfmpeg;
+                //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                startInfo.Arguments = comando;
 
-            startInfo.RedirectStandardOutput = true;
-            startInfo.RedirectStandardError = true;
+                startInfo.RedirectStandardOutput = true;
+                startInfo.RedirectStandardError = true;
 
-            using (Process exeProcess = Process.Start(startInfo))
-            {
-                string error =  exeProcess.StandardError.ReadToEnd();
-                string output = exeProcess.StandardOutput.ReadToEnd();
-                exeProcess.WaitForExit();
-                log(error); 
-            }
+                using (Process exeProcess = Process.Start(startInfo))
+                {
+                    string error = exeProcess.StandardError.ReadToEnd();
+                    string output = exeProcess.StandardOutput.ReadToEnd();
+                    exeProcess.WaitForExit();
+                    log(error);
+                }
 
-            log("-CONCLUÍDO: 'unir_videos'\nVÍDEOS UNIFICADOS! -acima contem o log do ffmpeg");
+                log("-CONCLUÍDO: 'unir_videos'\nVÍDEOS UNIFICADOS! -acima contem o log do ffmpeg");
+            //}
+            //else
+            //{
+            //    log("Total:" + total_para_baixar + "    Baixado:" + progressBar2.Value + " a " + total_ja_baixados);
+            //    System.Threading.Thread.Sleep(3000);
+            //    unir_videos();
+            //}
         }
 
 
@@ -243,19 +283,6 @@ namespace Coub_Download
 
 
 
-        private void button_ver_num_comunidades_Click(object sender, EventArgs e)
-        {
-            var nomes_comunidade = "0   animals - pets" + Environment.NewLine + "1   blogging" + Environment.NewLine + "2   standup - jokes" + Environment.NewLine + "3   mashup" + Environment.NewLine + "4   anime" + Environment.NewLine + "5   movies" + Environment.NewLine + "6   gaming" + Environment.NewLine + "7   cartoons" + Environment.NewLine + "8   art" + Environment.NewLine + "9   live - pictures" + Environment.NewLine + "10  music" + Environment.NewLine + "11  news" + Environment.NewLine + "12  sports" + Environment.NewLine + "13  science - technology" + Environment.NewLine + "14  food - kitchen" + Environment.NewLine + "15  celebrity" + Environment.NewLine + "16  nature - travel" + Environment.NewLine + "17  fashion" + Environment.NewLine + "18  dance" + Environment.NewLine + "19  cars" + Environment.NewLine + "20  memes" + Environment.NewLine + "21  nsfw" + Environment.NewLine + "22  featured" + Environment.NewLine + "23  coub - of - the - day"+ Environment.NewLine;
-            log(nomes_comunidade);
-
-            console = true;
-            this.Size = new Size(960, 713);     //altera o tamanho do form
-            this.CenterToScreen();              //centraliza o form
-            button_console.Text = "Console ▲";
-        }
-
-
-
         // Grupo = periodo        
         private void radioButton_daily_CheckedChanged(object sender, EventArgs e)
         { periodo = "daily"; }
@@ -273,21 +300,27 @@ namespace Coub_Download
         { periodo = "half"; }
 
 
+
         private void button_console_Click(object sender, EventArgs e)
         {
-            if (console == false)
+            visualizar_console();
+        }
+
+        private void visualizar_console()
+        {
+            if (console == true)
             {
-                console = true;
-                this.Size = new Size(960, 713);     //altera o tamanho do form
+                console = false;
+                this.Size = new Size(463, 297);     //altera o tamanho do form
                 this.CenterToScreen();              //centraliza o form
-                button_console.Text = "Console ▲";
+                button_console.Text = "Console ▼";
             }
             else
             {
-                console = false;
-                this.Size = new Size(347, 345);     //altera o tamanho do form
+                console = true;
+                this.Size = new Size(1034, 713);     //altera o tamanho do form
                 this.CenterToScreen();              //centraliza o form
-                button_console.Text = "Console ▼";
+                button_console.Text = "Console ▲";
             }
         }
 
